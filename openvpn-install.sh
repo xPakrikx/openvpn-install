@@ -54,6 +54,9 @@ function checkOS () {
 	elif [[ -e /etc/system-release ]]; then
 		# shellcheck disable=SC1091
 		source /etc/os-release
+		if [[ "$ID" = "fedora" ]]; then
+			OS="fedora"
+		fi
 		if [[ "$ID" = "centos" ]]; then
 			OS="centos"
 			if [[ ! $VERSION_ID =~ (7|8) ]]; then
@@ -74,8 +77,6 @@ function checkOS () {
 				exit 1
 			fi
 		fi
-	elif [[ -e /etc/fedora-release ]]; then
-		OS=fedora
 	elif [[ -e /etc/arch-release ]]; then
 		OS=arch
 	else
@@ -293,7 +294,8 @@ function installQuestions () {
 	echo "   9) Google (Anycast: worldwide)"
 	echo "   10) Yandex Basic (Russia)"
 	echo "   11) AdGuard DNS (Russia)"
-	echo "   12) Custom"
+	echo "   12) NextDNS (Worldwide)"
+	echo "   13) Custom"
 	until [[ "$DNS" =~ ^[0-9]+$ ]] && [ "$DNS" -ge 1 ] && [ "$DNS" -le 12 ]; do
 		read -rp "DNS [1-12]: " -e -i 3 DNS
 			if [[ $DNS == 2 ]] && [[ -e /etc/unbound/unbound.conf ]]; then
@@ -779,7 +781,11 @@ ifconfig-pool-persist ipp.txt" >> /etc/openvpn/server.conf
 			echo 'push "dhcp-option DNS 176.103.130.130"' >> /etc/openvpn/server.conf
 			echo 'push "dhcp-option DNS 176.103.130.131"' >> /etc/openvpn/server.conf
 		;;
-		12) # Custom DNS
+		12) # NextDNS
+			echo 'push "dhcp-option DNS 45.90.28.167"' >> /etc/openvpn/server.conf
+			echo 'push "dhcp-option DNS 45.90.30.167"' >> /etc/openvpn/server.conf
+		;;
+		13) # Custom DNS
 		echo "push \"dhcp-option DNS $DNS1\"" >> /etc/openvpn/server.conf
 		if [[ "$DNS2" != "" ]]; then
 			echo "push \"dhcp-option DNS $DNS2\"" >> /etc/openvpn/server.conf

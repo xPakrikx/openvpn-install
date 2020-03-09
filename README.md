@@ -154,7 +154,7 @@ Since 2016, the two scripts have diverged and are not alike anymore, especially 
 
 - Windows: [The official OpenVPN community client](https://openvpn.net/index.php/download/community-downloads.html).
 - Linux: The `openvpn` package from your distribution. There is an [official APT repository](https://community.openvpn.net/openvpn/wiki/OpenvpnSoftwareRepos) for Debian/Ubuntu based distributions.
-- macOS: [Tunnelblick](https://tunnelblick.net/).
+- macOS: [Tunnelblick](https://tunnelblick.net/), [Viscosity](https://www.sparklabs.com/viscosity/).
 - Android: [OpenVPN for Android](https://play.google.com/store/apps/details?id=de.blinkt.openvpn).
 - iOS: [The official OpenVPN Connect client](https://itunes.apple.com/us/app/openvpn-connect/id590379981).
 
@@ -321,7 +321,9 @@ The script supports both and uses `tls-crypt` by default.
 
 ## Say thanks
 
-You can [say thanks](https://saythanks.io/to/Angristan) if you want!
+*Sadly saythanks.io doesn't exist anymore... Thanks for the dozens of messages! It's really meaninful to me.*
+
+*Still want to help? Check the "sponsor" button at the top of the page!*
 
 ## Credits & Licence
 
